@@ -46,6 +46,15 @@ RSpec.describe Article, type: :model do
       expect(article.errors[:title]).to include("can't be blank")
     end
 
+    # pending 'has an invalid content'
+
+    # pending 'has an invalid slug'
+
+    # pending 'validates the uniqueness of the slug'
+    # create article with a slug
+    # check if it's valid
+    # create a second article with the same slug
+    # check if it's invalid
 	end
 end
 
