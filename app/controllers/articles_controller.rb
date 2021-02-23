@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
 
   def index
-    render json: { 'page': params[:page] }
+    render json: {}, status: :ok
   end
 
   def show 
