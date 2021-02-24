@@ -45,16 +45,24 @@ RSpec.describe Article, type: :model do
       expect(article).not_to be_valid
       expect(article.errors[:title]).to include("can't be blank")
     end
+  end
 
-    # pending 'has an invalid content'
+  describe '.recent' do
+    it 'returns articles in the correct order' do
+      older_article = 
+        create(:article, created_at: 1.hour.ago)
+      recent_article = create(:article)
 
-    # pending 'has an invalid slug'
+      expect(describe_class.recent).to eq(
+        [recent_article, older_article]
+      )
 
-    # pending 'validates the uniqueness of the slug'
-    # create article with a slug
-    # check if it's valid
-    # create a second article with the same slug
-    # check if it's invalid
-	end
+      recent_article.update_column(:created_at, 2.hours.ago)
+
+      expect(describe_class.recent).to eq(
+        [older_article, recent_article]
+      )
+    end
+  end
 end
 
